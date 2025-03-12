@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SNIPPETS MANAGER</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>SNIPPETS TABLE</h1>
+
+      <div class="filters">
+        <form action="/" method="GET">
+          <input
+            type="text"
+            name="language"
+            placeholder="Filter op taal"
+            value="<%= currentLanguage %>"
+          />
+          <input
+            type="text"
+            name="tags"
+            placeholder="Filter op tags"
+            value="<%= currentTags %>"
+          />
+          <button type="submit">Filteren</button>
+        </form>
+      </div>
+
+      <table class="snippets-table">
+        <thead>
+          <tr>
+            <th>Titel</th>
+            <th>Code Snippet</th>
+            <th>Taal</th>
+            <th>Tags</th>
+            <th>Aangemaakt op</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% snippets.forEach(snippet => { %>
+          <tr>
+            <td><%= snippet.title %></td>
+            <td>
+              <pre><code><%= snippet.code %></code></pre>
+            </td>
+            <td><%= snippet.language %></td>
+            <td><%= snippet.tags.join(', ') %></td>
+            <td><%= new Date(snippet.createdAt).toLocaleDateString() %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

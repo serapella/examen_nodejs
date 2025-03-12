@@ -129,7 +129,7 @@ export const renderDashboard = async (req: Request, res: Response) => {
       snippet.code = Buffer.from(snippet.code, "base64").toString("utf-8");
     });
 
-    res.render("dashboard", {
+    res.render("snippettable", {
       snippets,
       currentLanguage: language || "",
       currentTags: tags || "",
