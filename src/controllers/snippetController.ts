@@ -110,7 +110,7 @@ export const deleteSnippet = async (req: Request, res: Response) => {
   }
 };
 
-export const renderDashboard = async (req: Request, res: Response) => {
+export const dashboard = async (req: Request, res: Response) => {
   try {
     const { language, tags } = req.query;
     const query: any = {};

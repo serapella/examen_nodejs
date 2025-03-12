@@ -7,12 +7,12 @@ import {
   getSnippetById,
   updateSnippet,
   deleteSnippet,
-  renderDashboard,
+  dashboard,
 } from "../controllers/snippetController";
 
 const router = express.Router();
 
-router.get("/", renderDashboard);
+router.get("/", dashboard);
 router.post("/api/snippets", createSnippet);
 router.get("/api/snippets", getSnippets);
 router.get("/api/snippets/:id", getSnippetById);
