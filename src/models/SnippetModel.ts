@@ -16,12 +16,14 @@ snippetSchema.pre("save", function (next) {
   if (this.code) {
     this.code = Buffer.from(this.code).toString("base64");
   }
-  if (this.expiresIn) {
+  if (this.expiresIn && this.expiresIn > 0) {
     this.expiresAt = new Date(Date.now() + this.expiresIn * 1000);
+  } else {
+    this.expiresAt = undefined;
   }
   next();
 });
 
-const Snippet = mongoose.model("Snippet", snippetSchema, "snippets");
+const Snippet = mongoose.model("Snippet", snippetSchema);
 
 export default Snippet;

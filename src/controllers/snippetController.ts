@@ -33,6 +33,11 @@ export const getSnippets = async (req: Request, res: Response) => {
     } = req.query;
     const query: any = {};
 
+    query.$or = [
+      { expiresAt: { $exists: false } },
+      { expiresAt: { $gt: new Date() } },
+    ];
+
     if (language) {
       query.language = new RegExp(language as string, "i");
     }
@@ -68,33 +73,6 @@ export const getSnippetById = async (req: Request, res: Response) => {
     res.json(snippet);
   } catch (error) {
     res.status(500).json({ error: "Error fetching snippet" });
-  }
-};
-
-export const updateSnippet = async (req: Request, res: Response) => {
-  try {
-    const { title, code, language, tags } = req.body;
-    const encodedCode = code ? Buffer.from(code).toString("base64") : undefined;
-
-    const snippet = await Snippet.findByIdAndUpdate(
-      req.params.id,
-      {
-        ...(title && { title }),
-        ...(code && { code: encodedCode }),
-        ...(language && { language }),
-        ...(tags && { tags }),
-        updatedAt: new Date(),
-      },
-      { new: true }
-    );
-
-    if (!snippet) {
-      return res.status(404).json({ error: "Snippet not found" });
-    }
-
-    res.json(snippet);
-  } catch (error) {
-    res.status(500).json({ error: "Error updating snippet" });
   }
 };
 
