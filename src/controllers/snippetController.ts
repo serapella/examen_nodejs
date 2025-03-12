@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import Snippet from "../models/SnippetModel";
 
 export const createSnippet = async (req: Request, res: Response) => {
   try {
@@ -124,7 +125,7 @@ export const renderDashboard = async (req: Request, res: Response) => {
     }
 
     const snippets = await Snippet.find(query).sort({ createdAt: -1 });
-    snippets.forEach((snippet) => {
+    snippets.forEach((snippet: any) => {
       snippet.code = Buffer.from(snippet.code, "base64").toString("utf-8");
     });
 
