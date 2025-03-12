@@ -22,6 +22,6 @@ snippetSchema.pre("save", function (next) {
   next();
 });
 
-const Snippet = mongoose.model("Snippet", snippetSchema);
+const Snippet = mongoose.model("Snippet", snippetSchema, "snippets");
 
 export default Snippet;

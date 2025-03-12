@@ -31,7 +31,7 @@ export const getSnippets = async (req: Request, res: Response) => {
       sort = "createdAt",
       order = "desc",
     } = req.query;
-    const query: any = { expiresAt: { $gt: new Date() } };
+    const query: any = {};
 
     if (language) {
       query.language = new RegExp(language as string, "i");
@@ -47,7 +47,7 @@ export const getSnippets = async (req: Request, res: Response) => {
       .skip((Number(page) - 1) * Number(limit))
       .limit(Number(limit));
 
-    snippets.forEach((snippet: any) => {
+    snippets.forEach((snippet) => {
       snippet.code = Buffer.from(snippet.code, "base64").toString("utf-8");
     });
 
@@ -113,7 +113,7 @@ export const deleteSnippet = async (req: Request, res: Response) => {
 export const renderDashboard = async (req: Request, res: Response) => {
   try {
     const { language, tags } = req.query;
-    const query: any = { expiresAt: { $gt: new Date() } };
+    const query: any = {};
 
     if (language) {
       query.language = new RegExp(language as string, "i");
@@ -125,11 +125,11 @@ export const renderDashboard = async (req: Request, res: Response) => {
     }
 
     const snippets = await Snippet.find(query).sort({ createdAt: -1 });
-    snippets.forEach((snippet: any) => {
+    snippets.forEach((snippet) => {
       snippet.code = Buffer.from(snippet.code, "base64").toString("utf-8");
     });
 
-    res.render("snippettable", {
+    res.render("snippetTable", {
       snippets,
       currentLanguage: language || "",
       currentTags: tags || "",
