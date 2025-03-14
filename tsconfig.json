@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "Preserve",
+    "module": "ESNext", // Gebruik ESNext voor betere compatibiliteit
     "strict": true,
-    "moduleDetection": "force",
-    "allowJs": true,
+    "moduleResolution": "node", // Zorgt ervoor dat modules op de juiste manier worden geresolved
     "esModuleInterop": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
     "noUnusedParameters": false,
     "jsx": "react-jsx",
-    "noEmit": true
+    "outDir": "./dist",
+    "allowJs": false,
+    "declaration": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "views/**/*"],
   "exclude": ["node_modules", "dist", "src/public/js/main.js"]
 }
