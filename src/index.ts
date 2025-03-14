@@ -1,28 +1,31 @@
 import express from "express";
 import mongoose from "mongoose";
 import path from "path";
-import dotenv from "dotenv";
-import router from "./routes/snippetRoutes";
 import { fileURLToPath } from "url";
-import { dirname } from "path";
+import dotenv from "dotenv";
+import snippetRoutes from "./routes/snippetRoutes.js";
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "..", "public")));
 
+// View engine setup
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../views"));
+app.set("views", path.join(__dirname, "..", "views"));
 
-app.use("/", router);
+// Routes
+app.use("/", snippetRoutes);
 
+// Connect to MongoDB
 mongoose
   .connect(process.env.MONGODB_URI as string)
   .then(() => console.log("✅ Connected to MongoDB"))
