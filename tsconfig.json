@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es2022",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "target": "ES2022",
+    "module": "Preserve",
     "strict": true,
+    "moduleDetection": "force",
+    "allowJs": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
+    "isolatedModules": true,
     "resolveJsonModule": true,
-    "types": ["node"]
+    "noUnusedParameters": false,
+    "jsx": "react-jsx",
+    "noEmit": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "src/public/js/main.js"]
 }
