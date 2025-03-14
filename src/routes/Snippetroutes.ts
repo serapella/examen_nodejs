@@ -1,5 +1,3 @@
-//routes aanmaken, importeer variabelen uit controllers!
-
 import express from "express";
 import {
   createSnippet,
