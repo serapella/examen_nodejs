@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import path from "path";
 import dotenv from "dotenv";
-import snippetRoutes from "./routes/snippetRoutes";
+import router from "./routes/snippetRoutes";
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../views"));
 
-app.use("/", snippetRoutes);
+app.use("/", router);
 
 mongoose
   .connect(process.env.MONGODB_URI as string)
