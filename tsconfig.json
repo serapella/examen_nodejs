@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ESNext", // Gebruik ESNext voor betere compatibiliteit
+    "module": "Preserve",
     "strict": true,
-    "moduleResolution": "node", // Zorgt ervoor dat modules op de juiste manier worden geresolved
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
