@@ -7,12 +7,12 @@ import {
   dashboard,
 } from "../controllers/snippetController";
 
-const router = express.Router();
+const snippetRoutes = express.Router();
 
-router.get("/", dashboard);
-router.post("/api/snippets", createSnippet);
-router.get("/api/snippets", getSnippets);
-router.get("/api/snippets/:id", getSnippetById);
-router.delete("/api/snippets/:id", deleteSnippet);
+snippetRoutes.get("/", dashboard);
+snippetRoutes.post("/api/snippets", createSnippet);
+snippetRoutes.get("/api/snippets", getSnippets);
+snippetRoutes.get("/api/snippets/:id", getSnippetById);
+snippetRoutes.delete("/api/snippets/:id", deleteSnippet);
 
-export default router;
+export default snippetRoutes;

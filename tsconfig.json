@@ -11,7 +11,8 @@
     "jsx": "react-jsx",
     "outDir": "./dist",
     "allowJs": false,
-    "declaration": true
+    "declaration": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*", "views/**/*"],
   "exclude": ["node_modules", "dist", "src/public/js/main.js"]
